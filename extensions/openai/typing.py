@@ -1,6 +1,6 @@
 import json
 import time
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from pydantic import BaseModel, Field
 
@@ -149,6 +149,9 @@ class EmbeddingsResponse(BaseModel):
 
 class EncodeRequest(BaseModel):
     text: str
+    add_special_tokens: bool = True
+    add_bos_token: bool = True
+    truncation_length: Optional[int] = None
 
 
 class EncodeResponse(BaseModel):
@@ -158,6 +161,7 @@ class EncodeResponse(BaseModel):
 
 class DecodeRequest(BaseModel):
     tokens: List[int]
+    skip_special_tokens: bool = True
 
 
 class DecodeResponse(BaseModel):

@@ -235,19 +235,19 @@ async def handle_moderations(request: Request):
 
 @app.post("/v1/internal/encode", response_model=EncodeResponse, dependencies=check_key)
 async def handle_token_encode(request_data: EncodeRequest):
-    response = token_encode(request_data.text)
+    response = token_encode(request_data)
     return JSONResponse(response)
 
 
 @app.post("/v1/internal/decode", response_model=DecodeResponse, dependencies=check_key)
 async def handle_token_decode(request_data: DecodeRequest):
-    response = token_decode(request_data.tokens)
+    response = token_decode(request_data)
     return JSONResponse(response)
 
 
 @app.post("/v1/internal/token-count", response_model=TokenCountResponse, dependencies=check_key)
 async def handle_token_count(request_data: EncodeRequest):
-    response = token_count(request_data.text)
+    response = token_count(request_data)
     return JSONResponse(response)
 
 
